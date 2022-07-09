@@ -5,7 +5,7 @@ This is the repository for the LinkedIn Learning course [Functional Programming 
 Functional programming is a way of organizing code that makes applications more scalable and maintainable. By utilizing the core concepts of immutability, data-function separation, and first-class functions, programmers can write better code. In this course, learn about the functional programming paradigm and see how to take advantage of it with Java and object-oriented programming. Apply the learnings to real-world code and examine some of the more advanced and misunderstood concepts such as partial-application, recursion, and composition to become skilled in developing flexible code.
 
 ## 1. Introduction to Functional Programming
-### Why use functional programming?
+### 1.1 Why use functional programming?
 * Functional Programming Misconception
     * Functional Programming and Object-Oriented Programming are not opposite. They can be used alongside each other.
     * Basically, there are just a few key places where Object-Oriented programming falls short or doesn't provide much guidance, and it is precisely in these areas that functional programming can step in and help.
@@ -19,7 +19,7 @@ Functional programming is a way of organizing code that makes applications more 
     * Functional programming brings the precision of mathematical functions into computer programs. 
     * Imagine if we were able to represent all parts of a computer program as simply as a mathematical function such as this one here, $f(x) = x + 1$. Where could a bug possibly be hiding in a function like this? 
 
-### What is declarative programming?
+### 1.2 What is declarative programming?
 * Functional Programming is a declaritive style of programming. This is in contrast to other styles like object-oriented programming and procedural programming which are generally imperative style of programming.
     * **Imperative Programming**: Focus on how to do things.
     * **Declarative Programming**: Puts more focus on what things are.
