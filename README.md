@@ -1,2 +1,5 @@
-# java-functional-programming
-Course Functional Programming with Java
+# Functional Programming with Java
+This is the repository for the LinkedIn Learning course [Functional Programming with Java](https://www.linkedin.com/learning/functional-programming-with-java)
+
+## Inroduction
+Functional programming is a way of organizing code that makes applications more scalable and maintainable. By utilizing the core concepts of immutability, data-function separation, and first-class functions, programmers can write better code. In this course, learn about the functional programming paradigm and see how to take advantage of it with Java and object-oriented programming. Apply the learnings to real-world code and examine some of the more advanced and misunderstood concepts—such as partial-application, recursion, and composition—to become skilled in developing flexible code.
