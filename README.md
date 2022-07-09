@@ -16,5 +16,5 @@ Functional programming is a way of organizing code that makes applications more 
     * In a typical enterprise-sized program, thousands of different variables are being operated on in thousands of different places at runtime, and the application can get itself into buggy states which can be difficult to recreate.
     * This is exactly the type of situation that functional programming aims to avoid.
     * At its core, functional programming is concerned with helping us take the large number of complex ideas in any large computer program and organize them in a coherent way while at the same time making sure the code remain easy to test and modify.
-    * Functional programming bings the precision of mathematical functions into computer programs. 
+    * Functional programming brings the precision of mathematical functions into computer programs. 
     * Imagine if we were able to represent all parts of a computer program as simply as a mathematical function such as this one here, $f(x) = x + 1$. Where could a bug possibly be hiding in a function like this? 
