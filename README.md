@@ -18,3 +18,17 @@ Functional programming is a way of organizing code that makes applications more 
     * At its core, functional programming is concerned with helping us take the large number of complex ideas in any large computer program and organize them in a coherent way while at the same time making sure the code remain easy to test and modify.
     * Functional programming brings the precision of mathematical functions into computer programs. 
     * Imagine if we were able to represent all parts of a computer program as simply as a mathematical function such as this one here, $f(x) = x + 1$. Where could a bug possibly be hiding in a function like this? 
+
+### What is declarative programming?
+* Functional Programming is a declaritive style of programming. This is in contrast to other styles like object-oriented programming and procedural programming which are generally imperative style of programming.
+    * **Imperative Programming**: Focus on how to do things.
+    * **Declarative Programming**: Puts more focus on what things are.
+* Imperative vs. Declarative:
+
+Imperative: How | Declarative: What |
+----------------|-------------------|
+a. Set $x$ equals to zero<br>b. Add the first number in the array to $x$<br>c. Repeat step 2 for the rest of the numbers in the array<br>d. Divide $x$ by the length of the array.| $x$ is the sum of all the numbers in the array, divided by the length of the array.
+* Core Concepts of Functional Programming
+    1. Immutability
+    2. Functional purity
+    3. First-Class functions
