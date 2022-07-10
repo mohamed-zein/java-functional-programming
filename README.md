@@ -25,10 +25,45 @@ Functional programming is a way of organizing code that makes applications more 
     * **Declarative Programming**: Puts more focus on what things are.
 * Imperative vs. Declarative:
 
-Imperative: How | Declarative: What |
-----------------|-------------------|
-a. Set $x$ equals to zero<br>b. Add the first number in the array to $x$<br>c. Repeat step 2 for the rest of the numbers in the array<br>d. Divide $x$ by the length of the array.| $x$ is the sum of all the numbers in the array, divided by the length of the array.
+    Imperative: How | Declarative: What |
+    ----------------|-------------------|
+    a. Set $x$ equals to zero<br>b. Add the first number in the array to $x$<br>c. Repeat step 2 for the rest of the numbers in the array<br>d. Divide $x$ by the length of the array.| $x$ is the sum of all the numbers in the array, divided by the length of the array.
 * Core Concepts of Functional Programming
     1. Immutability
     2. Functional purity
     3. First-Class functions
+
+### 1.3 Immutability in Functional Programming
+* **Immutability** is the first major concept of Functional Programming.
+* Typically, programmers assign a value to a variable. For example, we can define a variable called _X_ and store the value five in it `int x = 5;`, and then later on in the program, we can change the value of that variable to some completely different number `x = 100`, and later on, we can change its value again `x = -1` and so on, so forth.
+![Immutability](resources/Images/1.3-Immutability/Immutability-1.jpg)
+* However, in Functional Programming, **this is actually not allowed**. When we say that `int x = 5;`, we mean for the rest of the program, X will only ever be 5. There is no way we can change it.
+* In short, immutability means that we need to treat most of the values in a program as constants, and this can either mean that we use Java's `final` (i.e. `final int x = 5;`) keyword to make sure that we don't change a given value, or we can simply learn to write our code in a such way that our programs don't have any modifications.
+* Another wat to think about **immutability** in functional programming is this:
+    * In **Imperative Programming**: we generally treat variables as these buckets that we can put values into, and we call this **assigning values to variables**.
+    * In **Functional Programming**: We don't _assign_ so much as **define** so when we say `int x = 3;`, we don't mean that `x` is just a container that's holding the value 3 currently, we literally mean that **`x` is another name for 3**. `x` is 3 in the same way that $pi$ is 3.14159, et cetera.
+* So Functional Programming treats all values as if they were as concrete and unchanging as $pi$ or any other mathematical constant. Let's take a look at quick example:  
+    * Let's assume in a program, we have an employee and we want to raise their salary?  
+    * In Oject-Oriented programming, we could just change it directly, usually by calling a member function.
+        ```
+        Employee employee1 = new Employee('John', 60000);
+        employee1.setSalary(70000);
+        ```
+    * In Functional Programming, on the other hand, we would instead define a new employee that represents the updated data and then use this new employee in our future calculations.
+        ```
+        Employee employee1 = new Employee('John', 60000);
+        Employee updatedEmployee1 = new Employee('John', 70000);
+        ```
+* So the advantage of immutability and the reason that functional programming places such an emphasis on it is that it frees us from having to deal with something called **state change**. 
+* **State Change**: When a program contains many variables that are all constantly changing at different times, it can be very hard to know what a state a program is going to be in at any given point in time, and as programs increase in size to include thousands or even millions of variables, this can lead to exteremly hard to find bugs and overall fragile code base that programmers are afraid to make changes to.
+![State Change](resources/Images/1.3-Immutability/State-Change.jpg)
+* Such a program that even test-driven development can't solve completely, since the task of testing all possible states that a program might get itself into is really impossible in programs of considerable size.
+* Now, on the other hand, functional programming starts off with an immutable set of data as a single source of truth. That't the bottom line here, and then it uses functions to combine this data piece by piece and transform it into useful information, and this data is usually retrieved from a database or some other memory storage. 
+![Data is Combined](resources/Images/1.3-Immutability/Data-Combined.jpg)
+* And there are 2 powerful advantages for this approach:
+    1. Original data in a program will always remain intact, which makes bugs a lot easier to find. 
+    2. Program constructed in this way are much easier to keep track of, since we can focus on any given piece individually.
+    The only thing that determines the output of a given piece is the input. We don't have to think about the entire system all the time
+#### Conclusion
+In Functional Programming, we need to treat all data as immutable.
+![Treat all Data as Immutable](resources/Images/1.3-Immutability/Immutability-Final.jpg)
