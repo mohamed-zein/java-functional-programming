@@ -191,4 +191,35 @@ In Functional Programming, we need to treat all data as immutable.
     Function<T, R>
     ```
 * Basically, this interface allows us to assign functions to variables and work with them in a very similar way to how we would work with any other data type.
-* Code example can be found [here](functional-programming/src/main/java/com/example/chapter2/video1/App.java).
+* Code example can be found [here](functional-programming/src/main/java/com/example/chapter2/video1).
+
+### 2.2 Lambda Expressions
+* Beside creating references to other class's methods, the function interface allows us to create new functions from scratch.
+* To this, Java provides us with a new piece of syntax called **Lambda Expressions**.
+* Basically a lambda expression is a shorthand syntaxh that we can use to defein new functions without having to define these functinos without having to define these functions as methods of any given class. 
+* Lambda expressions
+    * Starts off with a set of parentheses, which contains whatever arguments the function will accept
+    * Then they have an **arrow**.
+    * The **arrow** is followed by whatever we want the return value of the function to be.
+    * Note that when our lambda expression are only one line, we don't need to use the return keyword here, the value of the statement after the arrow is returned automatically.
+        ```
+        (Inteher someArgs) --> someArgs * 2 + 1;
+        ```
+    * Here we see an example of what it might look like to actually use a lambda expression to define the new function using the `Function` interface.
+        ```
+        Function<Integer, Integer> myFunction = (Integer someArgs) -> someArgs * 2 + 1;
+        ```
+    * When we define a new `Function` using the lambda expression, the types we provide in between the triangle brackets of the function interface have to match the types of the argmument and return values respectively.
+    * Since we already supplied the type of the argumnet inside the triangle brackets, we don't even need to supply that again inside the parentheses of the lambda expression.
+    * Another example where we have a function that takes a `String` as an argument and returns its length:
+        ```
+        Function<String, Integer> getStringLength = (myString) -> myString.length();
+        ```
+    * Another thing about the lambda syntax is that in the case where we have only **one** argument, we are allowed to drop the parentheses around that argument.
+        ```
+        Function<String, Integer> getStringLength = myString -> myString.length();
+        ```
+* Lambda Expressions: Multiline
+    * It is possible to have lambda expressions with multiple lines. 
+    * In that case we wrap the body of the expression in curly braces and use the `return` keyword on the last line.
+* * Code example can be found [here](functional-programming/src/main/java/com/example/chapter2/video2).
