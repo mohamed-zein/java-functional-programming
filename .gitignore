@@ -24,3 +24,6 @@ hs_err_pid*
 
 # Editor specific files
 functional-programming/.editorconfig
+
+# Target files
+functional-programming/target/
