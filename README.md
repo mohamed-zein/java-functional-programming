@@ -3,7 +3,7 @@ This is the repository for the LinkedIn Learning course [Functional Programming 
 
 [Materials provided by Instructor](resources/instructor-materials/Ex_Files_Functional_Prog_Java.zip).
 
-## Inroduction
+## Course details
 Functional programming is a way of organizing code that makes applications more scalable and maintainable. By utilizing the core concepts of immutability, data-function separation, and first-class functions, programmers can write better code. In this course, learn about the functional programming paradigm and see how to take advantage of it with Java and object-oriented programming. Apply the learnings to real-world code and examine some of the more advanced and misunderstood concepts such as partial-application, recursion, and composition to become skilled in developing flexible code.
 
 ## 1. Introduction to Functional Programming
@@ -173,3 +173,21 @@ In Functional Programming, we need to treat all data as immutable.
         ...
         return someFunction;
         ```
+
+## 2. First-Class Functions
+### 2.1 The Function Interface
+* In Functional Programming, we treat functions in a very similar way to other types such as Strings, integers, objects, or any other type in Java.
+* In Functional Programming, we are allowed to assign functions to variables.
+* Typically, we define functions as methods of a class. So as an example, if we have a _Person_ class, we might have getter and setter methods that interact with the class member variables.
+    ```
+    public class Person {
+        public String getName() { ... }
+
+        public void setAge(int newAge) { ... }
+    }
+    ```
+* So our first step into First-Class functions then is going to be the fact that Java provides a function interface that allows us to define functions as variables.
+    ```
+    Function<T, R>
+    ```
+* Basically, this interface allows us to assign functions to variables and work with them in a very similar way to how we would work with any other data type.
