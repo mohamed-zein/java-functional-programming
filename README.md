@@ -69,3 +69,79 @@ Functional programming is a way of organizing code that makes applications more 
 #### Conclusion
 In Functional Programming, we need to treat all data as immutable.
 ![Treat all Data as Immutable](resources/Images/1.3-Immutability/Immutability-Final.jpg)
+
+### 1.4 Functional Purity
+* **Pure Functions**: Always return the same output for the same input.
+* In Functional Programming, we aim to make all functions into pure functions.
+* **Impure Functions**: Have an internal or external state change.
+* The most common example of Impure Functions in Java is when you have a methods in a class they are rerferred to a mutable member variable.
+* **Impure Function** example: 
+    * Let's say we have a _Person_ class:
+        ```
+        public class Person {
+            private int age;
+            public int getAge() {
+                return age;
+            }
+
+            public void setAgte(int age) {
+                this.age = age;
+            }
+        }
+        ```
+    * This `getAge` function is probably not pure and here's why:
+        ```
+        // let's say it will return 34 because this is the person's age now
+        person.getAge(); // --> 34
+        
+        // then we can change the person's age using setter method
+        person.setAge(50); 
+
+        // now when calling this metod again, it will give us different output
+        // even though we called it using the same args again (no arguments)
+        person.getAge(); // --> 50
+        ```
+* **Pure Function** example:
+    * Basically Pure Function will take all the data that it needs to operate on as arguments or define that data inside its function body.
+        ```
+        // This function is pure since at runtime, 
+        // there is no way to change the finction's output 
+        // without changing the arguments that we pass to it.
+        int add(int x, int y) {
+            return x + y;
+        }
+        ```
+* Does this mean we can't use member variables?
+    * The answer to this: Not necessarily, provided we follow the previous concept of Immutability.
+    * Again, let's assume the _Person_ class:
+        ```
+        public class Person {
+            private String name;
+            private int age;
+
+            // if we have setters methods for the class member variables
+            public void setName(String name) { this.name = name; }
+            public void setAge(String age) { this.age = age; }
+
+
+            // then our toString method is not pure,
+            // since we could change its output 
+            // by simply changing the value(s) of the member variable(s) 
+            public String toString() {
+                return "name: " + this.name + "age: " + this.age;
+            }
+        }
+        ```
+        However, if our _Person_ class does not allow us to change these variables, either by simply not changing them in any of the available methods or by declaring them `final`, the we can consider the `toString` method as pure.
+        ```
+        public class Person {
+            private final String name;
+            private final int age;
+
+            // our toString method is  pure,
+            // since for a given Person instance, there's no way that we can change the output of this method between successive calls. 
+            public String toString() {
+                return "name: " + this.name + "age: " + this.age;
+            }
+        }
+        ```
