@@ -191,3 +191,4 @@ In Functional Programming, we need to treat all data as immutable.
     Function<T, R>
     ```
 * Basically, this interface allows us to assign functions to variables and work with them in a very similar way to how we would work with any other data type.
+* Code example can be found [here](functional-programming/src/main/java/com/example/chapter2/video1/App.java).
