@@ -138,7 +138,7 @@ In Functional Programming, we need to treat all data as immutable.
             private final String name;
             private final int age;
 
-            // our toString method is  pure,
+            // our toString method is pure,
             // since for a given Person instance, 
             // there's no way that we can change the output of
             // this method between successive calls. 
@@ -146,4 +146,30 @@ In Functional Programming, we need to treat all data as immutable.
                 return "name: " + this.name + "age: " + this.age;
             }
         }
+        ```
+### 1.5 First-Class functions
+* The third core concept is **First-class functions**. This is where the power and flexibilty of Functional Programming really start to shine through.
+* In Object-Oriented programming, we generally treat _data_ and _functions_ as entirely different types of entities. We never think of:
+    * Creating an array of functions.
+    * Passing functions as arguments to other functions.
+    * Returning functions from other functions.
+* On the other hand, in Functionl Programming, it is not only possible to do these things, it is in fact a source of tremendous flexibility.
+* In Java, Firs-Class functions are done using the `Function` interface, which allows us to work with functions in a very similar ways to how we normally treat other objects or values.
+    ```
+    Function<T, R>
+    ```
+* This simple change in mindset towards functions:
+    * Improves flexibilty and code reuse.
+    * Allows us to do useful things like combining existing functions to create new functions.
+        ```
+        Function[] functionArray = {
+            myFunction1, 
+            myFunction2,
+            ...
+        };
+
+        doSomething(myFunction);
+
+        ...
+        return someFunction;
         ```
