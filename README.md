@@ -139,7 +139,9 @@ In Functional Programming, we need to treat all data as immutable.
             private final int age;
 
             // our toString method is  pure,
-            // since for a given Person instance, there's no way that we can change the output of this method between successive calls. 
+            // since for a given Person instance, 
+            // there's no way that we can change the output of
+            // this method between successive calls. 
             public String toString() {
                 return "name: " + this.name + "age: " + this.age;
             }
