@@ -237,3 +237,11 @@ In Functional Programming, we need to treat all data as immutable.
     * However, it is possible to define our own interfaces for these types of functions, and they will work just the same way as the `Function` and `BiFunction` interfaces.
     * It is recomended that the custom interfaces is annotated as `@FunctionalInterface`. The annotation make it illegal to have more than one function in the interface.
 * Code example can be found [here](functional-programming/src/main/java/com/example/chapter2/video3).
+
+### 2.4 Functions as data
+* One thing that functional interfaces allow us to do is assign the definition of a function dynamically at runtime.
+* Let' think about an example. 
+    * Assume we are writing a program that loads data from a server (i.e. data about _Person_).
+    * This process takes a long time and during development or while running tests.
+    * Using the concept of functions as data, we can dynamically change the definition of the function that loads our data based on the environment it's running in.
+* Code example can be found [here](functional-programming/src/main/java/com/example/chapter2/video4).
