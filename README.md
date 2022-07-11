@@ -223,3 +223,16 @@ In Functional Programming, we need to treat all data as immutable.
     * It is possible to have lambda expressions with multiple lines. 
     * In that case we wrap the body of the expression in curly braces and use the `return` keyword on the last line.
 * * Code example can be found [here](functional-programming/src/main/java/com/example/chapter2/video2).
+
+### 2.3 BiFunctions and beyond
+* Can we use the `Function` interface to defein functions with different number of arguments?
+    * The answer is **Yes**. When doing Functional Programming in Java, it is possible to work with functions that have any number of arguments. 
+* The first thing we are going to look into is another functional programming interface in Java. This interface is called `BiFunction`.
+    * Basically, the `BiFunction` interface is exactly like the `Function` interface, except it applies to functions that takes two arguments instead of one.
+        ```
+        BiFunction<T, U, R>
+        ```
+* How we deal with functions that have some number of arguments other than one or two?
+    * In this case, Java doesn't provide any built in types such as tri-functions or quadr-functions and so on.
+    * However, it is possible to define our own interfaces for these types of functions, and they will work just the same way as the `Function` and `BiFunction` interfaces.
+    * It is recomended that the custom interfaces is annotated as `@FunctionalInterface`. The annotation make it illegal to have more than one function in the interface.
