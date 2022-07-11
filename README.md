@@ -222,7 +222,7 @@ In Functional Programming, we need to treat all data as immutable.
 * Lambda Expressions: Multiline
     * It is possible to have lambda expressions with multiple lines. 
     * In that case we wrap the body of the expression in curly braces and use the `return` keyword on the last line.
-* * Code example can be found [here](functional-programming/src/main/java/com/example/chapter2/video2).
+* Code example can be found [here](functional-programming/src/main/java/com/example/chapter2/video2).
 
 ### 2.3 BiFunctions and beyond
 * Can we use the `Function` interface to defein functions with different number of arguments?
@@ -236,3 +236,4 @@ In Functional Programming, we need to treat all data as immutable.
     * In this case, Java doesn't provide any built in types such as tri-functions or quadr-functions and so on.
     * However, it is possible to define our own interfaces for these types of functions, and they will work just the same way as the `Function` and `BiFunction` interfaces.
     * It is recomended that the custom interfaces is annotated as `@FunctionalInterface`. The annotation make it illegal to have more than one function in the interface.
+* Code example can be found [here](functional-programming/src/main/java/com/example/chapter2/video3).
