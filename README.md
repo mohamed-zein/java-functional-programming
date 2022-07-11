@@ -245,3 +245,14 @@ In Functional Programming, we need to treat all data as immutable.
     * This process takes a long time and during development or while running tests.
     * Using the concept of functions as data, we can dynamically change the definition of the function that loads our data based on the environment it's running in.
 * Code example can be found [here](functional-programming/src/main/java/com/example/chapter2/video4).
+
+### 2.5 Passing functions as arguments
+* Now we will look at how we can pass functions as arguments to other functions.
+* We are used to functions like the below one where we specify what data the function will be operating on.
+    ```
+    int add(int x, int y) {
+        return x + y;
+    }
+    ```
+* Instead of passing arguments into our function to specify what our data is, we could pass arguments to specify what was done to that data.
+* Code example can be found [here](functional-programming/src/main/java/com/example/chapter2/video5).
