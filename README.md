@@ -256,3 +256,13 @@ In Functional Programming, we need to treat all data as immutable.
     ```
 * Instead of passing arguments into our function to specify what our data is, we could pass arguments to specify what was done to that data.
 * Code example can be found [here](functional-programming/src/main/java/com/example/chapter2/video5).
+
+### 2.6 Returning Functions
+* In programming, it's common to hear functions referred to as a _black box_. You put data in the box and you get some different data out.
+    * If we're talking about a function called double for example, you put one number into the box, say five, and then we get another number out, in this case 10.
+    ![Functions as Black Box](resources/Images/2.6-Returning-Functions/Functions-BlackBox.jpg)
+    * Since Java allows us to treat functions in the same way as any other data type, it's possible in Java to have a _black box_ that returns another _black box_. And this other _black box_ then behaves in the same way as a regular function, where we put data in, and then we get some different data out.
+    ![Returning Functions](resources/Images/2.6-Returning-Functions/Functions-BlackBox.jpg)
+
+* What if instead of having to define several different functions with only slightly different definitions, we could just have a function that created these variations for us. Now, this is a job for first class functions. So what we're picturing here is a function that takes a number as an argument and returns another function that multiplies its own integer argument by whatever number we originally passed to the outer function
+* Code example can be found [here](functional-programming/src/main/java/com/example/chapter2/video6).
