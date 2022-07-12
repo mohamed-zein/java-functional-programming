@@ -276,3 +276,59 @@ In Functional Programming, we need to treat all data as immutable.
 ### 2.8 Higher-order functions
 * **Higher Order Functions**: Functions that either take other functions as arguments or return other functions.
 * Code example can be found [here](functional-programming/src/main/java/com/example/chapter2/video8).
+
+## 3. Working with Streams in Java
+* Many concepts of Functional Programming have a great deal of native support in the Java language itself.
+* Through its **Stream** interface, Java provides a host of built in functions and functionality that makes working with arrays and other similar structures, such as lists in a functional way, incredibly easy.
+* Built-in functions such as `map`, `filter`, `reduce` and `collect`, make the formerly complicated task of transforming lists data almost trivial.
+![Java Streams](resources/Images/3.1-Map-Java/Java-Stream.jpg)
+
+### 3.1 Map in Java
+* `map` is a built-in function that can be used convert each of the individual elements in the list to other form.
+* Examples:
+    * We have a list of numbers and we want to double all the numbers in the list.
+    ![Mapping List Integers](resources/Images/3.1-Map-Java/Map-Integers.jpg)
+    * We want to convert a list of inch measurements into a list of centimeter measurements.
+    ![Mapping List Float](resources/Images/3.1-Map-Java/Map-Float.jpg)
+    * We have a list of person objects with name, age, and job attributes, and maybe a lot more data as well. And we want to convert this data into a list that contains only the people's names.
+    ![Mapping List of Persons](resources/Images/3.1-Map-Java/Map-Persons.jpg)
+* The typical procedural way to do this would be is to:
+    * use a `for` loop to loop through all the elements in an array and push modified elements onto a new array.
+        ```
+        List<Integer> doubled = new ArrayList<Integer>();
+        for(int i = 0; i < numbers.size(); i++) {
+            Integer result = numbers.get(i) * 2 ;
+            doubled.add(result);
+        }
+        ```
+    * Or worse, simply modify the elements in place.
+        ```
+        List<Integer> doubled = new ArrayList<Integer>();
+        for(int i = 0; i < numbers.size(); i++) {
+            Integer result = numbers.get(i) * 2 ;
+            numbers.set(i, result);
+        }
+        ```
+    * This way can very easily lead to bugs, especially as the body of the for loop gets bigger and more complex.
+* Java provides a much easier, cleaner and more functional way of doing this using its built-in map function.
+* Streams in Java:
+    * `map`, and the same applies to other functions, only works with Streams. So we need to convert the list, array or any other data structure to a Stream.
+    * Streams in Java basically take some data structre such as a list and they allow us to process the data in pipelined way.
+    * There are several ways to convert Java data structures into streams.
+    * The easiest way is to use a list to store our data and then simply call the `.stream` method on that list, which creates a Java stream with that list as an input.
+        ```
+        myList.stream();
+        ```
+    * Once we've converted our data structure into a stream, the way we use `map` is by calling it on that stream and passing it a function object that we want to apply to each element in the stream.
+        ```
+        myList.stream().map(timesTwo);
+        ```
+* Important Note about Streams:
+    * Map and other stream functions do not mutate the original lists they are called on.
+    * Since each call to `map` or `filter` returns another stream, at some point we're going to want to convert this stream into a list that contains the final data. And to do this, all we have to do is to call the `.collect` method.
+        ```
+        myList.stream()
+            .map(timesTwo)
+            .collect(Collectors.toList());
+        ```
+* Code example can be found [here](functional-programming/src/main/java/com/example/chapter3/video1).
