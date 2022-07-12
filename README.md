@@ -272,3 +272,7 @@ In Functional Programming, we need to treat all data as immutable.
 * Closure means that when we define a function that returns another function, the function that we return still has access to the internal scope of the function that returned it.
 ![Closure Example](resources/Images/2.7-Closure/Closure-Example.jpg)
 * Code example can be found [here](functional-programming/src/main/java/com/example/chapter2/video7).
+
+### 2.8 Higher-order functions
+* **Higher Order Functions**: Functions that either take other functions as arguments or return other functions.
+* Code example can be found [here](functional-programming/src/main/java/com/example/chapter2/video8).
