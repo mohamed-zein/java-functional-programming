@@ -266,3 +266,9 @@ In Functional Programming, we need to treat all data as immutable.
 
 * What if instead of having to define several different functions with only slightly different definitions, we could just have a function that created these variations for us. Now, this is a job for first class functions. So what we're picturing here is a function that takes a number as an argument and returns another function that multiplies its own integer argument by whatever number we originally passed to the outer function
 * Code example can be found [here](functional-programming/src/main/java/com/example/chapter2/video6).
+
+### 2.7 Closure
+* Returning functions from other functions leads us to another very important concept in Java, and this is something called closure.
+* Closure means that when we define a function that returns another function, the function that we return still has access to the internal scope of the function that returned it.
+![Closure Example](resources/Images/2.7-Closure/Closure-Example.jpg)
+* Code example can be found [here](functional-programming/src/main/java/com/example/chapter2/video7).
