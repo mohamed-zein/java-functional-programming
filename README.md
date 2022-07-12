@@ -3,7 +3,7 @@ This is the repository for the LinkedIn Learning course [Functional Programming 
 
 [Materials provided by Instructor](resources/instructor-materials/Ex_Files_Functional_Prog_Java.zip).
 
-## Inroduction
+## Course details
 Functional programming is a way of organizing code that makes applications more scalable and maintainable. By utilizing the core concepts of immutability, data-function separation, and first-class functions, programmers can write better code. In this course, learn about the functional programming paradigm and see how to take advantage of it with Java and object-oriented programming. Apply the learnings to real-world code and examine some of the more advanced and misunderstood concepts such as partial-application, recursion, and composition to become skilled in developing flexible code.
 
 ## 1. Introduction to Functional Programming
@@ -173,3 +173,106 @@ In Functional Programming, we need to treat all data as immutable.
         ...
         return someFunction;
         ```
+
+## 2. First-Class Functions
+### 2.1 The Function Interface
+* In Functional Programming, we treat functions in a very similar way to other types such as Strings, integers, objects, or any other type in Java.
+* In Functional Programming, we are allowed to assign functions to variables.
+* Typically, we define functions as methods of a class. So as an example, if we have a _Person_ class, we might have getter and setter methods that interact with the class member variables.
+    ```
+    public class Person {
+        public String getName() { ... }
+
+        public void setAge(int newAge) { ... }
+    }
+    ```
+* So our first step into First-Class functions then is going to be the fact that Java provides a function interface that allows us to define functions as variables.
+    ```
+    Function<T, R>
+    ```
+* Basically, this interface allows us to assign functions to variables and work with them in a very similar way to how we would work with any other data type.
+* Code example can be found [here](functional-programming/src/main/java/com/example/chapter2/video1).
+
+### 2.2 Lambda Expressions
+* Beside creating references to other class's methods, the function interface allows us to create new functions from scratch.
+* To this, Java provides us with a new piece of syntax called **Lambda Expressions**.
+* Basically a lambda expression is a shorthand syntaxh that we can use to defein new functions without having to define these functinos without having to define these functions as methods of any given class. 
+* Lambda expressions
+    * Starts off with a set of parentheses, which contains whatever arguments the function will accept
+    * Then they have an **arrow**.
+    * The **arrow** is followed by whatever we want the return value of the function to be.
+    * Note that when our lambda expression are only one line, we don't need to use the return keyword here, the value of the statement after the arrow is returned automatically.
+        ```
+        (Inteher someArgs) --> someArgs * 2 + 1;
+        ```
+    * Here we see an example of what it might look like to actually use a lambda expression to define the new function using the `Function` interface.
+        ```
+        Function<Integer, Integer> myFunction = (Integer someArgs) -> someArgs * 2 + 1;
+        ```
+    * When we define a new `Function` using the lambda expression, the types we provide in between the triangle brackets of the function interface have to match the types of the argmument and return values respectively.
+    * Since we already supplied the type of the argumnet inside the triangle brackets, we don't even need to supply that again inside the parentheses of the lambda expression.
+    * Another example where we have a function that takes a `String` as an argument and returns its length:
+        ```
+        Function<String, Integer> getStringLength = (myString) -> myString.length();
+        ```
+    * Another thing about the lambda syntax is that in the case where we have only **one** argument, we are allowed to drop the parentheses around that argument.
+        ```
+        Function<String, Integer> getStringLength = myString -> myString.length();
+        ```
+* Lambda Expressions: Multiline
+    * It is possible to have lambda expressions with multiple lines. 
+    * In that case we wrap the body of the expression in curly braces and use the `return` keyword on the last line.
+* Code example can be found [here](functional-programming/src/main/java/com/example/chapter2/video2).
+
+### 2.3 BiFunctions and beyond
+* Can we use the `Function` interface to defein functions with different number of arguments?
+    * The answer is **Yes**. When doing Functional Programming in Java, it is possible to work with functions that have any number of arguments. 
+* The first thing we are going to look into is another functional programming interface in Java. This interface is called `BiFunction`.
+    * Basically, the `BiFunction` interface is exactly like the `Function` interface, except it applies to functions that takes two arguments instead of one.
+        ```
+        BiFunction<T, U, R>
+        ```
+* How we deal with functions that have some number of arguments other than one or two?
+    * In this case, Java doesn't provide any built in types such as tri-functions or quadr-functions and so on.
+    * However, it is possible to define our own interfaces for these types of functions, and they will work just the same way as the `Function` and `BiFunction` interfaces.
+    * It is recomended that the custom interfaces is annotated as `@FunctionalInterface`. The annotation make it illegal to have more than one function in the interface.
+* Code example can be found [here](functional-programming/src/main/java/com/example/chapter2/video3).
+
+### 2.4 Functions as data
+* One thing that functional interfaces allow us to do is assign the definition of a function dynamically at runtime.
+* Let' think about an example. 
+    * Assume we are writing a program that loads data from a server (i.e. data about _Person_).
+    * This process takes a long time and during development or while running tests.
+    * Using the concept of functions as data, we can dynamically change the definition of the function that loads our data based on the environment it's running in.
+* Code example can be found [here](functional-programming/src/main/java/com/example/chapter2/video4).
+
+### 2.5 Passing functions as arguments
+* Now we will look at how we can pass functions as arguments to other functions.
+* We are used to functions like the below one where we specify what data the function will be operating on.
+    ```
+    int add(int x, int y) {
+        return x + y;
+    }
+    ```
+* Instead of passing arguments into our function to specify what our data is, we could pass arguments to specify what was done to that data.
+* Code example can be found [here](functional-programming/src/main/java/com/example/chapter2/video5).
+
+### 2.6 Returning Functions
+* In programming, it's common to hear functions referred to as a _black box_. You put data in the box and you get some different data out.
+    * If we're talking about a function called double for example, you put one number into the box, say five, and then we get another number out, in this case 10.
+    ![Functions as Black Box](resources/Images/2.6-Returning-Functions/Functions-BlackBox.jpg)
+    * Since Java allows us to treat functions in the same way as any other data type, it's possible in Java to have a _black box_ that returns another _black box_. And this other _black box_ then behaves in the same way as a regular function, where we put data in, and then we get some different data out.
+    ![Returning Functions](resources/Images/2.6-Returning-Functions/BlackBox-BlackBox.jpg)
+
+* What if instead of having to define several different functions with only slightly different definitions, we could just have a function that created these variations for us. Now, this is a job for first class functions. So what we're picturing here is a function that takes a number as an argument and returns another function that multiplies its own integer argument by whatever number we originally passed to the outer function
+* Code example can be found [here](functional-programming/src/main/java/com/example/chapter2/video6).
+
+### 2.7 Closure
+* Returning functions from other functions leads us to another very important concept in Java, and this is something called closure.
+* Closure means that when we define a function that returns another function, the function that we return still has access to the internal scope of the function that returned it.
+![Closure Example](resources/Images/2.7-Closure/Closure-Example.jpg)
+* Code example can be found [here](functional-programming/src/main/java/com/example/chapter2/video7).
+
+### 2.8 Higher-order functions
+* **Higher Order Functions**: Functions that either take other functions as arguments or return other functions.
+* Code example can be found [here](functional-programming/src/main/java/com/example/chapter2/video8).
