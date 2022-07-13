@@ -355,3 +355,34 @@ In Functional Programming, we need to treat all data as immutable.
     * `Predicate` is Java built-in interface, similar to `Function`, that returns `Boolean`.
     ![Filter Predicate](resources/Images/3.2-Filter-Java/Filter-Syntax-2.jpg)
 * Code example can be found [here](functional-programming/src/main/java/com/example/chapter3/video2).
+
+## 3.3 Reduce in Java
+* `reduce` allows us to take a list of data and reduce it to single piece of data.
+* For example, we use `reduce` if we wanted to take a list of numbers and reduce it down to a sum or an average.
+![Reducing List of Integers](resources/Images/3.3-Reduce-Java/Reduce-Sum-Integers.jpg)
+* How `reduce` workd?
+    * It starts off with an initial value, say zero if we're working with integers.
+    * And for each element in the stream, it modifies this initial value in some way until after we've processed all our elements, we end up with the result.
+* Examples of how `reduce` works:
+    * In the case of finding the sum of a list of numbers, for example, we'd start off with zero and then we'd add each element to the initial value.
+    ![Reduce Sum of Integers](resources/Images/3.3-Reduce-Java/Reduce-Sum-Integers-2.jpg)
+    * If we were trying to find the product of a list of numbers, we'd start off with one and then we'd multiply each element by the initial value and so on.
+    ![Reduce Product of Integers](resources/Images/3.3-Reduce-Java/Reduce-Product-Integers.jpg)
+* Syntax of `reduce`:
+    * `reduce` like most other built-in list functions takes a function as an argument.
+    * With `reduce` the function we pass in is a special type of function called a `BinaryOperator<T>`.
+    ![Reduce Syntax](resources/Images/3.3-Reduce-Java/Reduce-Syntax-1.jpg)
+    * A `BinaryOperator<T>` is, is a _BiFunction_ where the two arguments and the return value are all the same type.
+* How `reduce` works?
+    * We pass in that `BinaryOperator<T>` function.
+    * What happens is that the first argument of this function represents the current value that we've built up on top of the initial value. We call this argument the carry or accumulator.
+    * The second argument represents the current element of the stream that we're looking at, much like in the `map` or `filter` functions.
+    * The purpose of this `BinaryOperator<T>` function is to tell `reduce` how to combine the current accumulated value with the current item in the stream.
+    * When we want to calculate the sum of a list of numbers, for example, our function will simply return the accumulator argument plus the value of the current stream item.
+    ![Reduce Syntax Example](resources/Images/3.3-Reduce-Java/Reduce-Syntax-2.jpg)
+    * In addition to the `BinaryOperator<T>` function that we pass us an argument, we can also provide it with another argument. And that's the starting value or _identity_ as it's referred to in Java. If we provide it, this is the value that `reduce` will start with when looking at the elements in our stream, and if our stream is empty, this will be the value that gets returned.
+    ![Reduce Syntax Identity](resources/Images/3.3-Reduce-Java/Reduce-Syntax-3.jpg)
+    * if we don't provide a value for the _identity_ argument, `reduce` will return an optional object instead of just the basic type we might be expecting. The reason it does this is because if the stream is empty and we haven't provided a starting or _identity_ value, `reduce` will return a `null` value.
+    ![Reduce Syntax Empty Stream](resources/Images/3.3-Reduce-Java/Reduce-Syntax-4.jpg)
+    * `reduce` doesn't return a stream. It simply returns whatever value the `BinaryOperator<T>` function we pass to it, returns the last time it's called. And this means that we don't need to call `.collect` after `reduce` like we did with `map` and `filter`.
+* Code example can be found [here](functional-programming/src/main/java/com/example/chapter3/video3).
