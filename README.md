@@ -332,3 +332,26 @@ In Functional Programming, we need to treat all data as immutable.
             .collect(Collectors.toList());
         ```
 * Code example can be found [here](functional-programming/src/main/java/com/example/chapter3/video1).
+
+## 3.2 Filter in Java
+* `filter` is used when you want to find all the elements in an array or list that fit some kind of criteria.
+* For Example:
+    * If we have a list of numbers and we want to get all the numbers from it that are even.
+    ![Filter List of Integers](resources/Images/3.2-Filter-Java/Filter-Integer.jpg)
+    * If we have a list of employee objects, and we want to find the employees from this list that make more than a certain amount per year.
+    ![Filter List of Floats](resources/Images/3.2-Filter-Java/Filter-Float.jpg)
+* `filter` syntax:
+    * The syntax of filter is similar to `map`.
+        ```
+        myList.stream().filter(isEven);
+        ```
+    * We convert our list data into a stream, and then we can call the filter function with a function object as an argument.
+    * The main difference between `filter` and `map` is the type of function that we pass to it.
+    * With `map`, we pass in a function that returns a value for each element in our stream. And the return value of this function represents what that element becomes after the element is processed.
+    * On the other hand, for `filter`, we pass it a function that returns a `Boolean` that is either `true` or `false` for each element.
+    * If the function we pass returns `true` for a given element, then that element is kept in the output stream. Otherwise it's left out.
+    ![Filter Syntax](resources/Images/3.2-Filter-Java/Filter-Syntax-1.jpg)
+    * While `map` expects a type `Function`, the `filter` method expects a function of type `Predicate`.
+    * `Predicate` is Java built-in interface, similar to `Function`, that returns `Boolean`.
+    ![Filter Predicate](resources/Images/3.2-Filter-Java/Filter-Syntax-2.jpg)
+* Code example can be found [here](functional-programming/src/main/java/com/example/chapter3/video2).
