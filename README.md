@@ -386,3 +386,33 @@ In Functional Programming, we need to treat all data as immutable.
     ![Reduce Syntax Empty Stream](resources/Images/3.3-Reduce-Java/Reduce-Syntax-4.jpg)
     * `reduce` doesn't return a stream. It simply returns whatever value the `BinaryOperator<T>` function we pass to it, returns the last time it's called. And this means that we don't need to call `.collect` after `reduce` like we did with `map` and `filter`.
 * Code example can be found [here](functional-programming/src/main/java/com/example/chapter3/video3).
+
+## 3.4 Collect in Java
+* `collect` is one of the built-in list processing functions in Java.
+* So far, we've only been using `collect` to transform our streams back into lists, but it can actually do quite a bit more than that.
+    ```
+    .collect(Collectors.toList())
+    ```
+* Java's `collect` function is actually quite similar to `reduce`, except it's more flexible. 
+* Because `reduce` requires us to pass a `BinaryOperator<T>` function, the return value of `reduce` is restricted to being the same type as the elements of the stream that it's operating on. For example:
+    * If we're reducing a list of strings, the return value of reduce has to be a string. 
+    * If we're reducing a list of integers, the return value of reduce has to be an integer.
+* With `collect`, however, there are no such restrictions.
+![Collect vs Reduce](resources/Images/3.4-Collect-Java/Collect-Reduce.jpg)
+* The basic syntax of `collect` is like this:
+![Collect Syntax](resources/Images/3.4-Collect-Java/Collect-Syntax.jpg)
+    * We call `.collect` on a stream and pass it something called a `Collector`.
+    * [`Collector`](https://docs.oracle.com/javase/8/docs/api/java/util/stream/Collector.html) is an interface provided by Java that tells collect how to combine all the elements from a stream into some final value or object.
+    * The one that we've been seeing a lot of in this section has been `Collectors.toList`, which just takes all the elements from a stream and accumulates them into a list.
+        ```
+        myList.stream()
+            .collect(Collectors.toList());
+        ```
+* Java provides us with a pretty wide variety of standard collectors that we can use to collect our streams:
+    * Collectors.toList()
+    * Collectors.toSet()
+    * Collectors.joining()
+    * Collectors.counting()
+    * Collectors.groupingBy()
+    * Collectors.partitioningBy()
+* Code example can be found [here](functional-programming/src/main/java/com/example/chapter3/video4).
