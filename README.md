@@ -409,10 +409,10 @@ In Functional Programming, we need to treat all data as immutable.
             .collect(Collectors.toList());
         ```
 * Java provides us with a pretty wide variety of standard collectors that we can use to collect our streams:
-    * Collectors.toList()
-    * Collectors.toSet()
-    * Collectors.joining()
-    * Collectors.counting()
-    * Collectors.groupingBy()
-    * Collectors.partitioningBy()
+    * `Collectors.toList()`
+    * `Collectors.toSet()`
+    * `Collectors.joining()`
+    * `Collectors.counting()`
+    * `Collectors.groupingBy()`
+    * `Collectors.partitioningBy()`
 * Code example can be found [here](functional-programming/src/main/java/com/example/chapter3/video4).
