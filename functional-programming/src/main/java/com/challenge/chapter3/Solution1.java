@@ -3,7 +3,6 @@ package com.challenge.chapter3;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.function.BinaryOperator;
 import java.util.stream.Collectors;
 
 public class Solution1 {
@@ -55,7 +54,9 @@ public class Solution1 {
 
         // Get a List that contains all people's names
         // Answer 1 goes here
-        List<String> peopleNames = people.stream().map((person) -> person.name).collect(Collectors.toList());
+        List<String> peopleNames = people.stream()
+                .map((person) -> person.name)
+                .collect(Collectors.toList());
         System.out.println(peopleNames);
 
         Car[] carsArr = {
@@ -69,8 +70,11 @@ public class Solution1 {
 
         // Get a list of blue cars
         // Answer 2 goes here
-        List<Car> blueCars = cars.stream().filter((car) -> car.color == "blue").collect(Collectors.toList());
-        // cars.stream().filter((car) -> car.color == "blue").forEach((car) -> System.out.println("make: " + car.make + ", color: " + car.color));
+        List<Car> blueCars = cars.stream()
+                .filter((car) -> car.color == "blue")
+                .collect(Collectors.toList());
+        // cars.stream().filter((car) -> car.color == "blue").forEach((car) ->
+        // System.out.println("make: " + car.make + ", color: " + car.color));
         System.out.println(blueCars);
 
         Employee[] employeesArr = {
@@ -85,7 +89,9 @@ public class Solution1 {
 
         // Find a sum of all employees' salaries
         // Answer 3 goes here
-        Float totalSalary = employees.stream().map((employee) -> employee.salary).reduce(0f, (acc, salary) -> acc + salary);
+        Float totalSalary = employees.stream()
+                .map((employee) -> employee.salary)
+                .reduce(0f, (acc, salary) -> acc + salary);
         System.out.println(totalSalary);
     }
 }
