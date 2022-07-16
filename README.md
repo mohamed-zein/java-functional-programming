@@ -467,3 +467,6 @@ In Functional Programming, we need to treat all data as immutable.
         * The return value of the second function will become the corresponding value for that key.
         ![Collectors.toMap syntax](resources/Images/3.9-Challenge2/collector-map.jpg)
 * Use the class [Challenge2.java](functional-programming/src/main/java/com/challenge/chapter3/Challenge2.java) to complete the exercise.
+
+### 3.10 Solution: Average salary calculator
+* The solution to the challenge is in class [Solution2.java](functional-programming/src/main/java/com/challenge/chapter3/Solution2.java).
