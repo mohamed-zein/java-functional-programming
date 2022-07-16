@@ -426,3 +426,17 @@ In Functional Programming, we need to treat all data as immutable.
 ### 3.7 Combine list functions
 * In this lesson we see an example of how to combine lists and streams functions provided by Java to write to write code with more functionality.
 * Code example can be found [here](functional-programming/src/main/java/com/example/chapter3/video7).
+
+### 3.8 Parallel streams
+* In all the examples that we've been using so far with functions like `map`, `filter`, and so on, the streams that we've been using have been **serial streams**.
+    ```
+    myList.stream()
+    ```
+* This means is that all the elements in our stream are processed one after the other in order.
+* We create parallel streams in almost exactly the same way that we create regular streams. Instead of calling `lists.stream()` like we've been doing, we just call `list.parallelStream()` instead, 
+* Parallel Stream works with all the functions that we've covered in this section as well, `map`, `filter`, `reduce`, and `collect`.
+* Key Features of Parallel Streams:
+    * Parallel streams process data in parallel.
+    * Increasing performance.
+        * Parallel streams allow the processing of our data to be split up across multiple threads.
+        * When we create a parallel stream, Java splits up our list into multiple parts and processes each part concurrently on separate threads, and then it combines the results of each of those concurrent streams to get the final result.
