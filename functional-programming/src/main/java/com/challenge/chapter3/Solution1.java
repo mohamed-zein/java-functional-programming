@@ -3,6 +3,7 @@ package com.challenge.chapter3;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.BinaryOperator;
 import java.util.stream.Collectors;
 
 public class Solution1 {
@@ -84,5 +85,7 @@ public class Solution1 {
 
         // Find a sum of all employees' salaries
         // Answer 3 goes here
+        Float totalSalary = employees.stream().map((employee) -> employee.salary).reduce(0f, (acc, salary) -> acc + salary);
+        System.out.println(totalSalary);
     }
 }
