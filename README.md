@@ -333,7 +333,7 @@ In Functional Programming, we need to treat all data as immutable.
         ```
 * Code example can be found [here](functional-programming/src/main/java/com/example/chapter3/video1).
 
-## 3.2 Filter in Java
+### 3.2 Filter in Java
 * `filter` is used when you want to find all the elements in an array or list that fit some kind of criteria.
 * For Example:
     * If we have a list of numbers and we want to get all the numbers from it that are even.
@@ -356,7 +356,7 @@ In Functional Programming, we need to treat all data as immutable.
     ![Filter Predicate](resources/Images/3.2-Filter-Java/Filter-Syntax-2.jpg)
 * Code example can be found [here](functional-programming/src/main/java/com/example/chapter3/video2).
 
-## 3.3 Reduce in Java
+### 3.3 Reduce in Java
 * `reduce` allows us to take a list of data and reduce it to single piece of data.
 * For example, we use `reduce` if we wanted to take a list of numbers and reduce it down to a sum or an average.
 ![Reducing List of Integers](resources/Images/3.3-Reduce-Java/Reduce-Sum-Integers.jpg)
@@ -387,7 +387,7 @@ In Functional Programming, we need to treat all data as immutable.
     * `reduce` doesn't return a stream. It simply returns whatever value the `BinaryOperator<T>` function we pass to it, returns the last time it's called. And this means that we don't need to call `.collect` after `reduce` like we did with `map` and `filter`.
 * Code example can be found [here](functional-programming/src/main/java/com/example/chapter3/video3).
 
-## 3.4 Collect in Java
+### 3.4 Collect in Java
 * `collect` is one of the built-in list processing functions in Java.
 * So far, we've only been using `collect` to transform our streams back into lists, but it can actually do quite a bit more than that.
     ```
