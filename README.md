@@ -417,5 +417,8 @@ In Functional Programming, we need to treat all data as immutable.
     * `Collectors.partitioningBy()`
 * Code example can be found [here](functional-programming/src/main/java/com/example/chapter3/video4).
 
-### Challenge: Stream exercises
+### 3.5 Challenge: Stream exercises
 * Use the class [Challenge1.java](functional-programming/src/main/java/com/challenge/chapter3/Challenge1.java) to complete the exercise.
+
+### 3.6 Solution: Stream exercises
+* The solution to the challenge is in class [Solution1.java](functional-programming/src/main/java/com/challenge/chapter3/Solution1.java).
