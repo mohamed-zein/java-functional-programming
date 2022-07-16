@@ -470,3 +470,11 @@ In Functional Programming, we need to treat all data as immutable.
 
 ### 3.10 Solution: Average salary calculator
 * The solution to the challenge is in class [Solution2.java](functional-programming/src/main/java/com/challenge/chapter3/Solution2.java).
+
+## 4. Advanced Conecpts
+### 4.1 Advanced functional concepts
+There are 3 more concepts to be covered in this course:
+1. Recursion
+2. Partial Application
+3. Composition
+![Advanced Concepts](resources/Images/4.1-Advanced-Concepts/advanced-concepts.jpg)
