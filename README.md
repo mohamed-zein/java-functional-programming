@@ -422,3 +422,7 @@ In Functional Programming, we need to treat all data as immutable.
 
 ### 3.6 Solution: Stream exercises
 * The solution to the challenge is in class [Solution1.java](functional-programming/src/main/java/com/challenge/chapter3/Solution1.java).
+
+### 3.7 Combine list functions
+* In this lesson we see an example of how to combine lists and streams functions provided by Java to write to write code with more functionality.
+* Code example can be found [here](functional-programming/src/main/java/com/example/chapter3/video7).
