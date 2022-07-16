@@ -416,3 +416,6 @@ In Functional Programming, we need to treat all data as immutable.
     * `Collectors.groupingBy()`
     * `Collectors.partitioningBy()`
 * Code example can be found [here](functional-programming/src/main/java/com/example/chapter3/video4).
+
+### Challenge: Stream exercises
+* Use the class [Challenge1.java](functional-programming/src/main/java/com/challenge/chapter3/Challenge1.java) to complete the exercise.
