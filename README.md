@@ -440,3 +440,30 @@ In Functional Programming, we need to treat all data as immutable.
     * Increasing performance.
         * Parallel streams allow the processing of our data to be split up across multiple threads.
         * When we create a parallel stream, Java splits up our list into multiple parts and processes each part concurrently on separate threads, and then it combines the results of each of those concurrent streams to get the final result.
+### 3.9 Challenge: Average salary calculator
+* In [3.7 Combine list functions](#3.7-combine-list-functions), to compare the average salary for developers and non-developers, we had to perform the calculations twice.
+* However, this could be improved:
+    * Used the functions we've learned about to create a `map` object whose keys are all the different job titles of the employees in our list and the values for those keys are the average salary for all the employees with that job title.
+        ```
+        {
+            construction worker = 40000.0,
+            developer = 83333.336, 
+            writer = 50000, 
+            sales executive = 100000.0
+        }
+        ```
+* Hints for solution:
+    1. Use `Collectors.groupingBy(...)` to create a `map` that groups the employees into a `map` based on job title.
+    2. Calling `myMap.entrySet()` gives you a list of key/value pairs (`Entry<K, V>`) that is, pairings of each of the map's keys with ther correspondng values.
+    ![myMap.entrySet()](resources/Images/3.9-Challenge2/map-entrySet.jpg)
+    3. Use collector `Collectors.toMap(...)`. `toMap` takes a stream and accumulates it into a `map` object. And we pass 2 function objects to `Collectors.toMap`:
+        ```
+        Collectors.toMap(
+            keyFunction,
+            valueFunction
+        )
+        ```
+        * The return value of the first function will become a key in the `map`.
+        * The return value of the second function will become the corresponding value for that key.
+        ![Collectors.toMap syntax](resources/Images/3.9-Challenge2/collector-map.jpg)
+* Use the class [Challenge2.java](functional-programming/src/main/java/com/challenge/chapter3/Challenge2.java) to complete the exercise.
