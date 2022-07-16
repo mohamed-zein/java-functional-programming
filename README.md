@@ -276,3 +276,197 @@ In Functional Programming, we need to treat all data as immutable.
 ### 2.8 Higher-order functions
 * **Higher Order Functions**: Functions that either take other functions as arguments or return other functions.
 * Code example can be found [here](functional-programming/src/main/java/com/example/chapter2/video8).
+
+## 3. Working with Streams in Java
+* Many concepts of Functional Programming have a great deal of native support in the Java language itself.
+* Through its **Stream** interface, Java provides a host of built in functions and functionality that makes working with arrays and other similar structures, such as lists in a functional way, incredibly easy.
+* Built-in functions such as `map`, `filter`, `reduce` and `collect`, make the formerly complicated task of transforming lists data almost trivial.
+![Java Streams](resources/Images/3.1-Map-Java/Java-Stream.jpg)
+
+### 3.1 Map in Java
+* `map` is a built-in function that can be used convert each of the individual elements in the list to other form.
+* Examples:
+    * We have a list of numbers and we want to double all the numbers in the list.
+    ![Mapping List Integers](resources/Images/3.1-Map-Java/Map-Integers.jpg)
+    * We want to convert a list of inch measurements into a list of centimeter measurements.
+    ![Mapping List Float](resources/Images/3.1-Map-Java/Map-Float.jpg)
+    * We have a list of person objects with name, age, and job attributes, and maybe a lot more data as well. And we want to convert this data into a list that contains only the people's names.
+    ![Mapping List of Persons](resources/Images/3.1-Map-Java/Map-Persons.jpg)
+* The typical procedural way to do this would be is to:
+    * use a `for` loop to loop through all the elements in an array and push modified elements onto a new array.
+        ```
+        List<Integer> doubled = new ArrayList<Integer>();
+        for(int i = 0; i < numbers.size(); i++) {
+            Integer result = numbers.get(i) * 2 ;
+            doubled.add(result);
+        }
+        ```
+    * Or worse, simply modify the elements in place.
+        ```
+        List<Integer> doubled = new ArrayList<Integer>();
+        for(int i = 0; i < numbers.size(); i++) {
+            Integer result = numbers.get(i) * 2 ;
+            numbers.set(i, result);
+        }
+        ```
+    * This way can very easily lead to bugs, especially as the body of the for loop gets bigger and more complex.
+* Java provides a much easier, cleaner and more functional way of doing this using its built-in map function.
+* Streams in Java:
+    * `map`, and the same applies to other functions, only works with Streams. So we need to convert the list, array or any other data structure to a Stream.
+    * Streams in Java basically take some data structre such as a list and they allow us to process the data in pipelined way.
+    * There are several ways to convert Java data structures into streams.
+    * The easiest way is to use a list to store our data and then simply call the `.stream` method on that list, which creates a Java stream with that list as an input.
+        ```
+        myList.stream();
+        ```
+    * Once we've converted our data structure into a stream, the way we use `map` is by calling it on that stream and passing it a function object that we want to apply to each element in the stream.
+        ```
+        myList.stream().map(timesTwo);
+        ```
+* Important Note about Streams:
+    * Map and other stream functions do not mutate the original lists they are called on.
+    * Since each call to `map` or `filter` returns another stream, at some point we're going to want to convert this stream into a list that contains the final data. And to do this, all we have to do is to call the `.collect` method.
+        ```
+        myList.stream()
+            .map(timesTwo)
+            .collect(Collectors.toList());
+        ```
+* Code example can be found [here](functional-programming/src/main/java/com/example/chapter3/video1).
+
+### 3.2 Filter in Java
+* `filter` is used when you want to find all the elements in an array or list that fit some kind of criteria.
+* For Example:
+    * If we have a list of numbers and we want to get all the numbers from it that are even.
+    ![Filter List of Integers](resources/Images/3.2-Filter-Java/Filter-Integer.jpg)
+    * If we have a list of employee objects, and we want to find the employees from this list that make more than a certain amount per year.
+    ![Filter List of Floats](resources/Images/3.2-Filter-Java/Filter-Float.jpg)
+* `filter` syntax:
+    * The syntax of filter is similar to `map`.
+        ```
+        myList.stream().filter(isEven);
+        ```
+    * We convert our list data into a stream, and then we can call the filter function with a function object as an argument.
+    * The main difference between `filter` and `map` is the type of function that we pass to it.
+    * With `map`, we pass in a function that returns a value for each element in our stream. And the return value of this function represents what that element becomes after the element is processed.
+    * On the other hand, for `filter`, we pass it a function that returns a `Boolean` that is either `true` or `false` for each element.
+    * If the function we pass returns `true` for a given element, then that element is kept in the output stream. Otherwise it's left out.
+    ![Filter Syntax](resources/Images/3.2-Filter-Java/Filter-Syntax-1.jpg)
+    * While `map` expects a type `Function`, the `filter` method expects a function of type `Predicate`.
+    * `Predicate` is Java built-in interface, similar to `Function`, that returns `Boolean`.
+    ![Filter Predicate](resources/Images/3.2-Filter-Java/Filter-Syntax-2.jpg)
+* Code example can be found [here](functional-programming/src/main/java/com/example/chapter3/video2).
+
+### 3.3 Reduce in Java
+* `reduce` allows us to take a list of data and reduce it to single piece of data.
+* For example, we use `reduce` if we wanted to take a list of numbers and reduce it down to a sum or an average.
+![Reducing List of Integers](resources/Images/3.3-Reduce-Java/Reduce-Sum-Integers.jpg)
+* How `reduce` workd?
+    * It starts off with an initial value, say zero if we're working with integers.
+    * And for each element in the stream, it modifies this initial value in some way until after we've processed all our elements, we end up with the result.
+* Examples of how `reduce` works:
+    * In the case of finding the sum of a list of numbers, for example, we'd start off with zero and then we'd add each element to the initial value.
+    ![Reduce Sum of Integers](resources/Images/3.3-Reduce-Java/Reduce-Sum-Integers-2.jpg)
+    * If we were trying to find the product of a list of numbers, we'd start off with one and then we'd multiply each element by the initial value and so on.
+    ![Reduce Product of Integers](resources/Images/3.3-Reduce-Java/Reduce-Product-Integers.jpg)
+* Syntax of `reduce`:
+    * `reduce` like most other built-in list functions takes a function as an argument.
+    * With `reduce` the function we pass in is a special type of function called a `BinaryOperator<T>`.
+    ![Reduce Syntax](resources/Images/3.3-Reduce-Java/Reduce-Syntax-1.jpg)
+    * A `BinaryOperator<T>` is, is a _BiFunction_ where the two arguments and the return value are all the same type.
+* How `reduce` works?
+    * We pass in that `BinaryOperator<T>` function.
+    * What happens is that the first argument of this function represents the current value that we've built up on top of the initial value. We call this argument the carry or accumulator.
+    * The second argument represents the current element of the stream that we're looking at, much like in the `map` or `filter` functions.
+    * The purpose of this `BinaryOperator<T>` function is to tell `reduce` how to combine the current accumulated value with the current item in the stream.
+    * When we want to calculate the sum of a list of numbers, for example, our function will simply return the accumulator argument plus the value of the current stream item.
+    ![Reduce Syntax Example](resources/Images/3.3-Reduce-Java/Reduce-Syntax-2.jpg)
+    * In addition to the `BinaryOperator<T>` function that we pass us an argument, we can also provide it with another argument. And that's the starting value or _identity_ as it's referred to in Java. If we provide it, this is the value that `reduce` will start with when looking at the elements in our stream, and if our stream is empty, this will be the value that gets returned.
+    ![Reduce Syntax Identity](resources/Images/3.3-Reduce-Java/Reduce-Syntax-3.jpg)
+    * if we don't provide a value for the _identity_ argument, `reduce` will return an optional object instead of just the basic type we might be expecting. The reason it does this is because if the stream is empty and we haven't provided a starting or _identity_ value, `reduce` will return a `null` value.
+    ![Reduce Syntax Empty Stream](resources/Images/3.3-Reduce-Java/Reduce-Syntax-4.jpg)
+    * `reduce` doesn't return a stream. It simply returns whatever value the `BinaryOperator<T>` function we pass to it, returns the last time it's called. And this means that we don't need to call `.collect` after `reduce` like we did with `map` and `filter`.
+* Code example can be found [here](functional-programming/src/main/java/com/example/chapter3/video3).
+
+### 3.4 Collect in Java
+* `collect` is one of the built-in list processing functions in Java.
+* So far, we've only been using `collect` to transform our streams back into lists, but it can actually do quite a bit more than that.
+    ```
+    .collect(Collectors.toList())
+    ```
+* Java's `collect` function is actually quite similar to `reduce`, except it's more flexible. 
+* Because `reduce` requires us to pass a `BinaryOperator<T>` function, the return value of `reduce` is restricted to being the same type as the elements of the stream that it's operating on. For example:
+    * If we're reducing a list of strings, the return value of reduce has to be a string. 
+    * If we're reducing a list of integers, the return value of reduce has to be an integer.
+* With `collect`, however, there are no such restrictions.
+![Collect vs Reduce](resources/Images/3.4-Collect-Java/Collect-Reduce.jpg)
+* The basic syntax of `collect` is like this:
+![Collect Syntax](resources/Images/3.4-Collect-Java/Collect-Syntax.jpg)
+    * We call `.collect` on a stream and pass it something called a `Collector`.
+    * [`Collector`](https://docs.oracle.com/javase/8/docs/api/java/util/stream/Collector.html) is an interface provided by Java that tells collect how to combine all the elements from a stream into some final value or object.
+    * The one that we've been seeing a lot of in this section has been `Collectors.toList`, which just takes all the elements from a stream and accumulates them into a list.
+        ```
+        myList.stream()
+            .collect(Collectors.toList());
+        ```
+* Java provides us with a pretty wide variety of standard collectors that we can use to collect our streams:
+    * `Collectors.toList()`
+    * `Collectors.toSet()`
+    * `Collectors.joining()`
+    * `Collectors.counting()`
+    * `Collectors.groupingBy()`
+    * `Collectors.partitioningBy()`
+* Code example can be found [here](functional-programming/src/main/java/com/example/chapter3/video4).
+
+### 3.5 Challenge: Stream exercises
+* Use the class [Challenge1.java](functional-programming/src/main/java/com/challenge/chapter3/Challenge1.java) to complete the exercise.
+
+### 3.6 Solution: Stream exercises
+* The solution to the challenge is in class [Solution1.java](functional-programming/src/main/java/com/challenge/chapter3/Solution1.java).
+
+### 3.7 Combine list functions
+* In this lesson we see an example of how to combine lists and streams functions provided by Java to write to write code with more functionality.
+* Code example can be found [here](functional-programming/src/main/java/com/example/chapter3/video7).
+
+### 3.8 Parallel streams
+* In all the examples that we've been using so far with functions like `map`, `filter`, and so on, the streams that we've been using have been **serial streams**.
+    ```
+    myList.stream()
+    ```
+* This means is that all the elements in our stream are processed one after the other in order.
+* We create parallel streams in almost exactly the same way that we create regular streams. Instead of calling `lists.stream()` like we've been doing, we just call `list.parallelStream()` instead, 
+* Parallel Stream works with all the functions that we've covered in this section as well, `map`, `filter`, `reduce`, and `collect`.
+* Key Features of Parallel Streams:
+    * Parallel streams process data in parallel.
+    * Increasing performance.
+        * Parallel streams allow the processing of our data to be split up across multiple threads.
+        * When we create a parallel stream, Java splits up our list into multiple parts and processes each part concurrently on separate threads, and then it combines the results of each of those concurrent streams to get the final result.
+### 3.9 Challenge: Average salary calculator
+* In [3.7 Combine list functions](#3.7-combine-list-functions), to compare the average salary for developers and non-developers, we had to perform the calculations twice.
+* However, this could be improved:
+    * Used the functions we've learned about to create a `map` object whose keys are all the different job titles of the employees in our list and the values for those keys are the average salary for all the employees with that job title.
+        ```
+        {
+            construction worker = 40000.0,
+            developer = 83333.336, 
+            writer = 50000, 
+            sales executive = 100000.0
+        }
+        ```
+* Hints for solution:
+    1. Use `Collectors.groupingBy(...)` to create a `map` that groups the employees into a `map` based on job title.
+    2. Calling `myMap.entrySet()` gives you a list of key/value pairs (`Entry<K, V>`) that is, pairings of each of the map's keys with ther correspondng values.
+    ![myMap.entrySet()](resources/Images/3.9-Challenge2/map-entrySet.jpg)
+    3. Use collector `Collectors.toMap(...)`. `toMap` takes a stream and accumulates it into a `map` object. And we pass 2 function objects to `Collectors.toMap`:
+        ```
+        Collectors.toMap(
+            keyFunction,
+            valueFunction
+        )
+        ```
+        * The return value of the first function will become a key in the `map`.
+        * The return value of the second function will become the corresponding value for that key.
+        ![Collectors.toMap syntax](resources/Images/3.9-Challenge2/collector-map.jpg)
+* Use the class [Challenge2.java](functional-programming/src/main/java/com/challenge/chapter3/Challenge2.java) to complete the exercise.
+
+### 3.10 Solution: Average salary calculator
+* The solution to the challenge is in class [Solution2.java](functional-programming/src/main/java/com/challenge/chapter3/Solution2.java).
