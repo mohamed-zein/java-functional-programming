@@ -68,6 +68,9 @@ public class Solution1 {
 
         // Get a list of blue cars
         // Answer 2 goes here
+        List<Car> blueCars = cars.stream().filter((car) -> car.color == "blue").collect(Collectors.toList());
+        // cars.stream().filter((car) -> car.color == "blue").forEach((car) -> System.out.println("make: " + car.make + ", color: " + car.color));
+        System.out.println(blueCars);
 
         Employee[] employeesArr = {
                 new Employee("John", 34, "developer", 80000f),
