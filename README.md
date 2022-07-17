@@ -440,6 +440,8 @@ In Functional Programming, we need to treat all data as immutable.
     * Increasing performance.
         * Parallel streams allow the processing of our data to be split up across multiple threads.
         * When we create a parallel stream, Java splits up our list into multiple parts and processes each part concurrently on separate threads, and then it combines the results of each of those concurrent streams to get the final result.
+* Code example can be found [here](functional-programming/src/main/java/com/example/chapter3/video8).
+
 ### 3.9 Challenge: Average salary calculator
 * In [3.7 Combine list functions](#3.7-combine-list-functions), to compare the average salary for developers and non-developers, we had to perform the calculations twice.
 * However, this could be improved:
@@ -478,3 +480,15 @@ There are 3 more concepts to be covered in this course:
 2. Partial Application
 3. Composition
 ![Advanced Concepts](resources/Images/4.1-Advanced-Concepts/advanced-concepts.jpg)
+
+### 4.2 Partial application and currying
+* Partial application is when we take a function that has some number of arguments, and we fix some of those arguments to a set value. 
+![Partial Application](resources/Images/4.2-Partial-application/Partial-Application-1.jpg)
+* This function with fixed arguments can then be called from anywhere else in the code, and it will be as if we had called the original function with all of its arguments.
+![Partial Application](resources/Images/4.2-Partial-application/Partial-Application-2.jpg)
+* Normally when we call a function we have to pass all the arguments into it at the same exact time and place. What partial application allows us to do, is pass arguments to a function at different places in the code and then get the result once the function gets all of the arguments it needs.
+![Partial Application](resources/Images/4.2-Partial-application/Partial-Application-3.jpg)
+* Partial application is also a very useful way to configure more general functions into more specific ones.
+* In general, if there's a function that we use often in our code where one or more of the arguments that we call it with is almost always the same, this is usually a good candidate for using partial application.
+* **Currying** is a special case of partial application where each of the arguments is passed in one at a time, instead of in groups.
+* Code example can be found [here](functional-programming/src/main/java/com/example/chapter4/video2).
