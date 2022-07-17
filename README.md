@@ -492,3 +492,15 @@ There are 3 more concepts to be covered in this course:
 * In general, if there's a function that we use often in our code where one or more of the arguments that we call it with is almost always the same, this is usually a good candidate for using partial application.
 * **Currying** is a special case of partial application where each of the arguments is passed in one at a time, instead of in groups.
 * Code example can be found [here](functional-programming/src/main/java/com/example/chapter4/video2).
+
+### 4.3 Recursion
+* Recursion is simply when a function calls itself. While doing this can very easily lead to an infinite loop, if we're not careful.
+    ```
+    void someRecursiveFunction() {
+        // do some stuff
+
+        someRecursiveFunction();
+    };
+    ```
+* In recursion, we always have to tell our function when to stop. Without a stop condition, any recursive function will go on infinitely.
+* Code example can be found [here](functional-programming/src/main/java/com/example/chapter4/video3).
