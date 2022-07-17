@@ -504,3 +504,9 @@ There are 3 more concepts to be covered in this course:
     ```
 * In recursion, we always have to tell our function when to stop. Without a stop condition, any recursive function will go on infinitely.
 * Code example can be found [here](functional-programming/src/main/java/com/example/chapter4/video3).
+
+### 4.4 Composition
+* Composition is when we take a series of smaller modular functions and we combine them into one more complex function.
+![Composition](resources/Images/4.4-Composition/composition.jpg)
+* We can compose 2 functions using the `.compose` method of the `Function` interface.
+* Code example can be found [here](functional-programming/src/main/java/com/example/chapter4/video4).
