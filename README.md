@@ -47,12 +47,12 @@ Functional programming is a way of organizing code that makes applications more 
 * So Functional Programming treats all values as if they were as concrete and unchanging as $pi$ or any other mathematical constant. Let's take a look at quick example:  
     * Let's assume in a program, we have an employee and we want to raise their salary?  
     * In Oject-Oriented programming, we could just change it directly, usually by calling a member function.
-        ```
+        ```java
         Employee employee1 = new Employee('John', 60000);
         employee1.setSalary(70000);
         ```
     * In Functional Programming, on the other hand, we would instead define a new employee that represents the updated data and then use this new employee in our future calculations.
-        ```
+        ```java
         Employee employee1 = new Employee('John', 60000);
         Employee updatedEmployee1 = new Employee('John', 70000);
         ```
@@ -77,7 +77,7 @@ In Functional Programming, we need to treat all data as immutable.
 * The most common example of Impure Functions in Java is when you have a methods in a class they are rerferred to a mutable member variable.
 * **Impure Function** example: 
     * Let's say we have a _Person_ class:
-        ```
+        ```java
         public class Person {
             private int age;
             public int getAge() {
@@ -90,7 +90,7 @@ In Functional Programming, we need to treat all data as immutable.
         }
         ```
     * This `getAge` function is probably not pure and here's why:
-        ```
+        ```java
         // let's say it will return 34 because this is the person's age now
         person.getAge(); // --> 34
         
@@ -103,7 +103,7 @@ In Functional Programming, we need to treat all data as immutable.
         ```
 * **Pure Function** example:
     * Basically Pure Function will take all the data that it needs to operate on as arguments or define that data inside its function body.
-        ```
+        ```java
         // This function is pure since at runtime, 
         // there is no way to change the finction's output 
         // without changing the arguments that we pass to it.
@@ -114,7 +114,7 @@ In Functional Programming, we need to treat all data as immutable.
 * Does this mean we can't use member variables?
     * The answer to this: Not necessarily, provided we follow the previous concept of Immutability.
     * Again, let's assume the _Person_ class:
-        ```
+        ```java
         public class Person {
             private String name;
             private int age;
@@ -133,7 +133,7 @@ In Functional Programming, we need to treat all data as immutable.
         }
         ```
         However, if our _Person_ class does not allow us to change these variables, either by simply not changing them in any of the available methods or by declaring them `final`, the we can consider the `toString` method as pure.
-        ```
+        ```java
         public class Person {
             private final String name;
             private final int age;
@@ -155,13 +155,13 @@ In Functional Programming, we need to treat all data as immutable.
     * Returning functions from other functions.
 * On the other hand, in Functionl Programming, it is not only possible to do these things, it is in fact a source of tremendous flexibility.
 * In Java, Firs-Class functions are done using the `Function` interface, which allows us to work with functions in a very similar ways to how we normally treat other objects or values.
-    ```
+    ```java
     Function<T, R>
     ```
 * This simple change in mindset towards functions:
     * Improves flexibilty and code reuse.
     * Allows us to do useful things like combining existing functions to create new functions.
-        ```
+        ```java
         Function[] functionArray = {
             myFunction1, 
             myFunction2,
@@ -179,7 +179,7 @@ In Functional Programming, we need to treat all data as immutable.
 * In Functional Programming, we treat functions in a very similar way to other types such as Strings, integers, objects, or any other type in Java.
 * In Functional Programming, we are allowed to assign functions to variables.
 * Typically, we define functions as methods of a class. So as an example, if we have a _Person_ class, we might have getter and setter methods that interact with the class member variables.
-    ```
+    ```java
     public class Person {
         public String getName() { ... }
 
@@ -187,7 +187,7 @@ In Functional Programming, we need to treat all data as immutable.
     }
     ```
 * So our first step into First-Class functions then is going to be the fact that Java provides a function interface that allows us to define functions as variables.
-    ```
+    ```java
     Function<T, R>
     ```
 * Basically, this interface allows us to assign functions to variables and work with them in a very similar way to how we would work with any other data type.
@@ -202,21 +202,21 @@ In Functional Programming, we need to treat all data as immutable.
     * Then they have an **arrow**.
     * The **arrow** is followed by whatever we want the return value of the function to be.
     * Note that when our lambda expression are only one line, we don't need to use the return keyword here, the value of the statement after the arrow is returned automatically.
-        ```
+        ```java
         (Inteher someArgs) --> someArgs * 2 + 1;
         ```
     * Here we see an example of what it might look like to actually use a lambda expression to define the new function using the `Function` interface.
-        ```
+        ```java
         Function<Integer, Integer> myFunction = (Integer someArgs) -> someArgs * 2 + 1;
         ```
     * When we define a new `Function` using the lambda expression, the types we provide in between the triangle brackets of the function interface have to match the types of the argmument and return values respectively.
     * Since we already supplied the type of the argumnet inside the triangle brackets, we don't even need to supply that again inside the parentheses of the lambda expression.
     * Another example where we have a function that takes a `String` as an argument and returns its length:
-        ```
+        ```java
         Function<String, Integer> getStringLength = (myString) -> myString.length();
         ```
     * Another thing about the lambda syntax is that in the case where we have only **one** argument, we are allowed to drop the parentheses around that argument.
-        ```
+        ```java
         Function<String, Integer> getStringLength = myString -> myString.length();
         ```
 * Lambda Expressions: Multiline
@@ -229,7 +229,7 @@ In Functional Programming, we need to treat all data as immutable.
     * The answer is **Yes**. When doing Functional Programming in Java, it is possible to work with functions that have any number of arguments. 
 * The first thing we are going to look into is another functional programming interface in Java. This interface is called `BiFunction`.
     * Basically, the `BiFunction` interface is exactly like the `Function` interface, except it applies to functions that takes two arguments instead of one.
-        ```
+        ```java
         BiFunction<T, U, R>
         ```
 * How we deal with functions that have some number of arguments other than one or two?
@@ -249,7 +249,7 @@ In Functional Programming, we need to treat all data as immutable.
 ### 2.5 Passing functions as arguments
 * Now we will look at how we can pass functions as arguments to other functions.
 * We are used to functions like the below one where we specify what data the function will be operating on.
-    ```
+    ```java
     int add(int x, int y) {
         return x + y;
     }
@@ -294,7 +294,7 @@ In Functional Programming, we need to treat all data as immutable.
     ![Mapping List of Persons](resources/Images/3.1-Map-Java/Map-Persons.jpg)
 * The typical procedural way to do this would be is to:
     * use a `for` loop to loop through all the elements in an array and push modified elements onto a new array.
-        ```
+        ```java
         List<Integer> doubled = new ArrayList<Integer>();
         for(int i = 0; i < numbers.size(); i++) {
             Integer result = numbers.get(i) * 2 ;
@@ -302,7 +302,7 @@ In Functional Programming, we need to treat all data as immutable.
         }
         ```
     * Or worse, simply modify the elements in place.
-        ```
+        ```java
         List<Integer> doubled = new ArrayList<Integer>();
         for(int i = 0; i < numbers.size(); i++) {
             Integer result = numbers.get(i) * 2 ;
@@ -316,17 +316,17 @@ In Functional Programming, we need to treat all data as immutable.
     * Streams in Java basically take some data structre such as a list and they allow us to process the data in pipelined way.
     * There are several ways to convert Java data structures into streams.
     * The easiest way is to use a list to store our data and then simply call the `.stream` method on that list, which creates a Java stream with that list as an input.
-        ```
+        ```java
         myList.stream();
         ```
     * Once we've converted our data structure into a stream, the way we use `map` is by calling it on that stream and passing it a function object that we want to apply to each element in the stream.
-        ```
+        ```java
         myList.stream().map(timesTwo);
         ```
 * Important Note about Streams:
     * Map and other stream functions do not mutate the original lists they are called on.
     * Since each call to `map` or `filter` returns another stream, at some point we're going to want to convert this stream into a list that contains the final data. And to do this, all we have to do is to call the `.collect` method.
-        ```
+        ```java
         myList.stream()
             .map(timesTwo)
             .collect(Collectors.toList());
@@ -342,7 +342,7 @@ In Functional Programming, we need to treat all data as immutable.
     ![Filter List of Floats](resources/Images/3.2-Filter-Java/Filter-Float.jpg)
 * `filter` syntax:
     * The syntax of filter is similar to `map`.
-        ```
+        ```java
         myList.stream().filter(isEven);
         ```
     * We convert our list data into a stream, and then we can call the filter function with a function object as an argument.
@@ -390,7 +390,7 @@ In Functional Programming, we need to treat all data as immutable.
 ### 3.4 Collect in Java
 * `collect` is one of the built-in list processing functions in Java.
 * So far, we've only been using `collect` to transform our streams back into lists, but it can actually do quite a bit more than that.
-    ```
+    ```java
     .collect(Collectors.toList())
     ```
 * Java's `collect` function is actually quite similar to `reduce`, except it's more flexible. 
@@ -404,7 +404,7 @@ In Functional Programming, we need to treat all data as immutable.
     * We call `.collect` on a stream and pass it something called a `Collector`.
     * [`Collector`](https://docs.oracle.com/javase/8/docs/api/java/util/stream/Collector.html) is an interface provided by Java that tells collect how to combine all the elements from a stream into some final value or object.
     * The one that we've been seeing a lot of in this section has been `Collectors.toList`, which just takes all the elements from a stream and accumulates them into a list.
-        ```
+        ```java
         myList.stream()
             .collect(Collectors.toList());
         ```
@@ -429,7 +429,7 @@ In Functional Programming, we need to treat all data as immutable.
 
 ### 3.8 Parallel streams
 * In all the examples that we've been using so far with functions like `map`, `filter`, and so on, the streams that we've been using have been **serial streams**.
-    ```
+    ```java
     myList.stream()
     ```
 * This means is that all the elements in our stream are processed one after the other in order.
@@ -446,7 +446,7 @@ In Functional Programming, we need to treat all data as immutable.
 * In [3.7 Combine list functions](#3.7-combine-list-functions), to compare the average salary for developers and non-developers, we had to perform the calculations twice.
 * However, this could be improved:
     * Used the functions we've learned about to create a `map` object whose keys are all the different job titles of the employees in our list and the values for those keys are the average salary for all the employees with that job title.
-        ```
+        ```java
         {
             construction worker = 40000.0,
             developer = 83333.336, 
@@ -459,7 +459,7 @@ In Functional Programming, we need to treat all data as immutable.
     2. Calling `myMap.entrySet()` gives you a list of key/value pairs (`Entry<K, V>`) that is, pairings of each of the map's keys with ther correspondng values.
     ![myMap.entrySet()](resources/Images/3.9-Challenge2/map-entrySet.jpg)
     3. Use collector `Collectors.toMap(...)`. `toMap` takes a stream and accumulates it into a `map` object. And we pass 2 function objects to `Collectors.toMap`:
-        ```
+        ```java
         Collectors.toMap(
             keyFunction,
             valueFunction
@@ -495,7 +495,7 @@ There are 3 more concepts to be covered in this course:
 
 ### 4.3 Recursion
 * Recursion is simply when a function calls itself. While doing this can very easily lead to an infinite loop, if we're not careful.
-    ```
+    ```java
     void someRecursiveFunction() {
         // do some stuff
 
